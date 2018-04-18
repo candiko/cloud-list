@@ -1,14 +1,16 @@
 // ================================================================================================
 // === KICK-OFF ===================================================================================
 // ================================================================================================
-var express  = require("express"),
-    app      = express(),
-    port     = 3000,
-    todoRoutes = require("./routes/todos"),
-    bodyParser = require("body-parser");
+require("dotenv").load();
+
+var express = require("express"),
+  app = express(),
+  port = 3000,
+  todoRoutes = require("./routes/todos"),
+  bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 
@@ -16,7 +18,7 @@ app.use(express.static(__dirname + "/views"));
 // === ROUTES =====================================================================================
 // ================================================================================================
 app.get("/", function(req, res) {
-    res.sendFile("index.html");
+  res.sendFile("index.html");
 });
 
 app.use("/api/todos", todoRoutes);
@@ -25,5 +27,8 @@ app.use("/api/todos", todoRoutes);
 // === START SERVER ===============================================================================
 // ================================================================================================
 app.listen(3000, function() {
-    console.log("Daris is listening for ToDo JSON API. You can reach at http:127.0.0.1:" + port);
+  console.log(
+    "Daris is listening for ToDo JSON API. You can reach at http:127.0.0.1:" +
+      port
+  );
 });
