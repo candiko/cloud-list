@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+
 mongoose.set("debug", true);
 mongoose.connect(process.env.DB_URL);
 mongoose.Promise = Promise;

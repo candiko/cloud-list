@@ -1,14 +1,17 @@
-var express = require("express"),
-    router = express.Router(),
-    helpers = require("../helpers/todos");
+const helpers = require("../helpers/todos");
+const express = require("express");
 
-router.route("/")
-    .get(helpers.getTodos)
-    .post(helpers.createTodo);
+const router = express.Router();
 
-router.route("/:todoId")
-    .get(helpers.getTodo)
-    .put(helpers.updateTodo)
-    .delete(helpers.deleteTodo)
+router
+  .route("/")
+  .get(helpers.getTodos)
+  .post(helpers.createTodo);
+
+router
+  .route("/:todoId")
+  .get(helpers.getTodo)
+  .put(helpers.updateTodo)
+  .delete(helpers.deleteTodo);
 
 module.exports = router;

@@ -1,53 +1,53 @@
-var db = require("../models");
+const db = require("../models");
 
-exports.getTodos = function (req, res) {
-    db.Todo.find()
-        .then(function (todos) {
-            res.json(todos);
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
-}
+exports.getTodos = (req, res) => {
+  db.Todo.find()
+    .then(todos => {
+      res.json(todos);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+};
 
-exports.createTodo = function (req, res) {
-    db.Todo.create(req.body)
-        .then(function (newTodo) {
-            res.status(201).json(newTodo);
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
-}
+exports.createTodo = (req, res) => {
+  db.Todo.create(req.body)
+    .then(newTodo => {
+      res.status(201).json(newTodo);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+};
 
-exports.getTodo = function (req, res) {
-    db.Todo.findById(req.params.todoId)
-        .then(function (todos) {
-            res.json(todos);
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
-}
+exports.getTodo = (req, res) => {
+  db.Todo.findById(req.params.todoId)
+    .then(todos => {
+      res.json(todos);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+};
 
-exports.updateTodo = function (req, res) {
-    db.Todo.findByIdAndUpdate(req.params.todoId, req.body, { new: true })
-        .then(function (todo) {
-            res.json(todo);
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
-}
+exports.updateTodo = (req, res) => {
+  db.Todo.findByIdAndUpdate(req.params.todoId, req.body, { new: true })
+    .then(todo => {
+      res.json(todo);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+};
 
-exports.deleteTodo = function (req, res) {
-    db.Todo.findByIdAndRemove(req.params.todoId)
-        .then(function () {
-            res.json({ message: "Todo is deleted." });
-        })
-        .catch(function (err) {
-            res.send(err);
-        })
-}
+exports.deleteTodo = (req, res) => {
+  db.Todo.findByIdAndRemove(req.params.todoId)
+    .then(() => {
+      res.json({ message: "Todo is deleted." });
+    })
+    .catch(err => {
+      res.send(err);
+    });
+};
 
 module.exports = exports;

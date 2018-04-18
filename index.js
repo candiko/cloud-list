@@ -1,34 +1,28 @@
-// ================================================================================================
-// === KICK-OFF ===================================================================================
-// ================================================================================================
+// LOAD ENVIRONMENT VARIABLES
 require("dotenv").load();
 
-var express = require("express"),
-  app = express(),
-  port = 3000,
-  todoRoutes = require("./routes/todos"),
-  bodyParser = require("body-parser");
+const todoRoutes = require("./routes/todos");
+const bodyParser = require("body-parser");
+const path = require("path");
+const express = require("express");
+
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/views"));
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "/views")));
 
-// ================================================================================================
-// === ROUTES =====================================================================================
-// ================================================================================================
-app.get("/", function(req, res) {
+// ROUTES
+app.get("/", (req, res) => {
   res.sendFile("index.html");
 });
 
 app.use("/api/todos", todoRoutes);
 
-// ================================================================================================
-// === START SERVER ===============================================================================
-// ================================================================================================
-app.listen(3000, function() {
+app.listen(process.env.PORT, () => {
   console.log(
-    "Daris is listening for ToDo JSON API. You can reach at http:127.0.0.1:" +
-      port
+    `Daris is listening for Cloud List app.
+    You can reach app from http://localhost:${process.env.PORT}`
   );
 });
